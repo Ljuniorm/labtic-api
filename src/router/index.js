@@ -13,6 +13,11 @@ const routes = [
     path: "/Parametros",
     name: "Parametros",
     component: () => import("../views/Parametros")
+  },
+  {
+    path: "/Api",
+    name: "Api",
+    component: () => import("../views/Api")
   }
 
 ];
