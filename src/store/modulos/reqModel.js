@@ -1,6 +1,3 @@
-import {
-    SET_PAGE_ONE
-} from '../mutations'
 
 export default {
     state:{
@@ -12,7 +9,7 @@ export default {
         },
     },
     mutations:{
-        [SET_PAGE_ONE](state, payload){
+        SET_PAGE_ONE(state, payload){
             state.pageOne.name = payload.name
             state.pageOne.description = payload.description
             state.pageOne.path = payload.path

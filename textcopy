@@ -1,0 +1,70 @@
+  <v-container>
+    <v-col>
+      {{ pageOne.method }}
+      {{ pageOne.name }}
+      {{ pageOne.path }}
+      {{ pageOne.description }}
+      <v-row>
+        <h1 class="font-italic font-weight-bold">Header</h1>
+        <v-spacer />
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on }">
+            <v-btn v-on="on" class="mx-7" fab dark color="grey" small>
+              <v-icon dark>mdi-plus</v-icon>
+            </v-btn>
+          </template>
+          <span>Adicionar Header</span>
+        </v-tooltip>
+      </v-row>
+    </v-col>
+    <v-col cols="12">
+      <v-row>
+        <v-col cols="5">
+          <v-text-field label="Key" outlined></v-text-field>
+          <v-icon large left>
+            mdi-key
+          </v-icon>
+          <span class="title font-weight-light">Key</span>
+        </v-col>
+        <v-col cols="5">
+          <v-text-field class="ml-3" label="Value" outlined></v-text-field>
+          <v-icon large left>
+            mdi-alpha-v-circle
+          </v-icon>
+          <span class="title font-weight-light">Value</span>
+        </v-col>
+        <v-col cols="2">
+          <v-row justify="center">
+            <v-col>
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on }">
+                  <v-btn
+                    :key="n"
+                    id="buttonSave"
+                    v-on="on"
+                    fab
+                    text
+                    dark
+                    color="green"
+                    small
+                  >
+                    <v-icon dark>mdi-content-save</v-icon>
+                  </v-btn>
+                </template>
+                <span>Save</span>
+              </v-tooltip>
+            </v-col>
+            <v-col>
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on }">
+                  <v-btn v-on="on" fab text dark color="red" small>
+                    <v-icon dark>mdi-delete</v-icon></v-btn
+                  >
+                </template>
+                <span>Delete</span>
+              </v-tooltip>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+    </v-col>
