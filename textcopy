@@ -68,3 +68,76 @@
         </v-col>
       </v-row>
     </v-col>
+
+    <!-- PARAMS -->
+    <v-col>
+      <v-row>
+        <h1 class="font-italic font-weight-bold">Params</h1>
+        <v-spacer />
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on }">
+            <v-btn
+              @click="addParams"
+              v-on="on"
+              class="mx-7"
+              fab
+              dark
+              color="grey"
+              small
+            >
+              <v-icon dark>mdi-plus</v-icon>
+            </v-btn>
+          </template>
+          <span>Adicionar Params</span>
+        </v-tooltip>
+      </v-row>
+    </v-col>
+
+    <v-form v-model="validOne">
+      <v-col>
+        <v-row  v-if="primaryParams">
+          <v-col sm="5">
+            <v-text-field label="Key" outlined></v-text-field>
+          </v-col>
+          <v-col sm="5">
+            <v-text-field label="Value" outlined></v-text-field>
+          </v-col>
+          <v-col sm="2">
+            <v-row>
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on }">
+                  <v-btn
+                    id="buttonSave"
+                    v-on="on"
+                    fab
+                    text
+                    color="green"
+                    small
+                    @click="saveParams"
+                  >
+                    <v-icon dark>mdi-content-save</v-icon>
+                  </v-btn>
+                </template>
+                <span>Save</span>
+              </v-tooltip>
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on }">
+                  <v-btn
+                    v-on="on"
+                    fab
+                    text
+                    dark
+                    color="red"
+                    small
+                    @click="deleteParams"
+                  >
+                    <v-icon dark>mdi-close</v-icon></v-btn
+                  >
+                </template>
+                <span>Delete</span>
+              </v-tooltip>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-form>

@@ -18,7 +18,8 @@ const routes = [
     path: "/Api",
     name: "Api",
     component: () => import("../views/Api")
-  }
+  },
+
 
 ];
 const router = new VueRouter({
