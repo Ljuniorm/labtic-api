@@ -36,9 +36,8 @@
     <!-- FIM QUERY -->
 
     <hr />
-    <div>
-      <Body title="Body" tooltip="Adicionar Body" />
-    </div>
+    <!-- v-if="pageOne.method === 'POST' || pageOne.method === 'PUT'" -->
+    <Body  title="Body" tooltip="Adicionar Body" :items="body" @addItem="addItemBody" />
     <v-col>
       <v-row>
         <v-spacer />
@@ -62,7 +61,9 @@ export default {
     return {
       headers: [],
       params: [],
-      query: []
+      query: [],
+      body: [],
+      count: 1,
     };
   },
   computed: {
@@ -86,10 +87,17 @@ export default {
     saveQuery(toCreate) {
       this.query.push(toCreate);
     },
-
     removeHeader() {
       this.primaryHeader = false;
       this.toCreate = { key: "", value: "" };
+    },
+    addItemBody(item){
+      if(Array.isArray(item.value)) console.log('isso é um array');
+      this.body.push({
+        id: this.count,
+        name: `${item.key} : ${item.value}`
+      })
+      this.count++;
     }
   }
 };
