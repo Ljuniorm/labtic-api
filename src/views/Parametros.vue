@@ -63,7 +63,7 @@ export default {
       params: [],
       query: [],
       body: [],
-      count: 1,
+      count: 0,
     };
   },
   computed: {
@@ -91,14 +91,29 @@ export default {
       this.primaryHeader = false;
       this.toCreate = { key: "", value: "" };
     },
+    getNewId(){
+      return this.count++;
+    },
+    setItemTreeName(treeItem){
+      return `${treeItem.key} : ${treeItem.value}`
+    },
+    setJsonChildren(child){
+      return {
+              id: this.getNewId(),
+              name: this.setItemTreeName(child)
+            }
+    },
     addItemBody(item){
-      if(Array.isArray(item.value)) console.log('isso é um array');
-      this.body.push({
-        id: this.count,
-        name: `${item.key} : ${item.value}`
-      })
-      this.count++;
-    }
+      if(Array.isArray(item.value)){
+        let children = {
+          id: this.getNewId(),
+          name: `${item.key} :`,
+          children: item.value.map(this.setJsonChildren),
+        }
+        return this.body.push(children)
+      }
+      this.body.push(this.setJsonChildren(item))
+    } 
   }
 };
 </script>

@@ -101,13 +101,12 @@
               <v-tooltip bottom>
                 <template v-slot:activator="{ on }">
                   <v-btn
-                    id="buttonSave"
                     v-on="on"
                     fab
                     text
                     color="green"
                     small
-                    @click="addItem"
+                    @click="addJsonItem"
                   >
                     <v-icon dark>mdi-content-save</v-icon>
                   </v-btn>
@@ -152,7 +151,6 @@
               <v-tooltip bottom>
                 <template v-slot:activator="{ on }">
                   <v-btn
-                    id="buttonSave"
                     v-on="on"
                     fab
                     text
@@ -173,9 +171,10 @@
 
     <v-row  >
       <v-col v-if="items.length">
-        <v-treeview :items="items"></v-treeview>
+        <v-treeview open-on-click selected-color="red" @input="selectItem" selectable :items="items"></v-treeview>
       </v-col>
     </v-row>
+
   </v-container>
 </template>
 
@@ -225,7 +224,7 @@ export default {
     addJsonElement(){
       this.arrayValue.push({
         key: '',
-        value: '',
+        value:'',
       });
     },
     addItem(){
@@ -233,7 +232,25 @@ export default {
         key: this.key,
         value: this.value,
       });
+      this.type = '';
+      this.key = '';
+      this.value = '';
     },
+    addJsonItem(){
+      this.$emit('addItem', {
+        key: this.key,
+        value: this.arrayValue,
+      })
+      this.type = '';
+      this.key = '';
+      this.arrayValue = [{
+        key: '',
+        value: '',
+      }];
+    },
+    selectItem(selected){
+      console.log(selected);
+    }
   }
 };
 </script>
