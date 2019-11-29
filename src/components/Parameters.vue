@@ -3,24 +3,46 @@
     <v-form v-model="valid">
       <v-col>
         <v-row>
-          <h1 class="font-italic font-weight-bold">{{ title }}</h1>
+          <v-col cols="4">
+            <h1 class="font-italic font-weight-bold">{{ title }}</h1>
+          </v-col>
           <v-spacer />
-          <v-tooltip bottom v-if="!isActive">
-          <template v-slot:activator="{ on }">
-            <v-btn class="mt-3" v-on="on" fab dark color="grey" small @click="addHeader">
-              <v-icon dark>mdi-plus</v-icon>
-            </v-btn>
-          </template>
-          <span>{{ tooltip }}</span>
-        </v-tooltip>
-        <v-tooltip bottom v-else>
-          <template v-slot:activator="{ on }">
-            <v-btn class="mt-3" v-on="on" fab dark color="grey" small @click="addHeader">
-              <v-icon dark>mdi-minus</v-icon>
-            </v-btn>
-          </template>
-          <span>{{closeTooltip}}</span>
-        </v-tooltip>
+          <v-col cols="1" v-if="!isActive">
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <v-btn
+                  class="mt-3"
+                  v-on="on"
+                  fab
+                  dark
+                  color="grey"
+                  small
+                  @click="addHeader"
+                >
+                  <v-icon dark>mdi-plus</v-icon>
+                </v-btn>
+              </template>
+              <span>{{ tooltip }}</span>
+            </v-tooltip>
+          </v-col>
+          <v-col cols="1" v-else>
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <v-btn
+                  class="mt-3"
+                  v-on="on"
+                  fab
+                  dark
+                  color="grey"
+                  small
+                  @click="addHeader"
+                >
+                  <v-icon dark>mdi-minus</v-icon>
+                </v-btn>
+              </template>
+              <span>{{ closeTooltip }}</span>
+            </v-tooltip>
+          </v-col>
         </v-row>
       </v-col>
       <v-col v-if="isActive">
@@ -158,8 +180,7 @@ export default {
   methods: {
     addHeader() {
       this.isActive = !this.isActive;
-      this.toCreate = { key:"", value:""
-      }
+      this.toCreate = { key: "", value: "" };
     },
     saveHeader() {
       this.$emit("save", {

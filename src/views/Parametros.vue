@@ -113,7 +113,7 @@ export default {
         return this.body.push(children)
       }
       this.body.push(this.setJsonChildren(item))
-    } 
+    }
   }
 };
 </script>
